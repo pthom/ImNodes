@@ -23,6 +23,7 @@
 #pragma once
 
 #include "ImNodes.h"
+#include "cpp/ImNodesStdTypes.h"
 
 //
 // Appearance can be styled mid-frame by ImNodes::Ez::PushStyleVar()/ImNodes::Ez::PopStyleVar().
@@ -66,10 +67,11 @@ namespace ImNodes
 namespace Ez
 {
 
+
 struct SlotInfo
 {
     /// Slot title, will be displayed on the node.
-    const char* title;
+    SlotTitle title;
     /// Slot kind, will be used for matching connections to slots of same kind.
     int kind;
 };

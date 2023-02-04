@@ -232,8 +232,14 @@ void EndNode()
     g.NodeSplitter.Merge(draw_list);
 }
 
-bool Slot(const char* title, int kind, ImVec2 &pos)
+bool Slot(SlotTitle title_, int kind, ImVec2 &pos)
 {
+#ifdef IMNODES_PYBIND
+    const char* title = title_.c_str();
+#else
+    const char* title = title_;
+#endif
+
     IM_ASSERT(GContext != nullptr);
     Context &g = *GContext;
     auto* storage = ImGui::GetStateStorage();

@@ -233,19 +233,20 @@ void BeginCanvas(CanvasState* canvas)
 
     if (!ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
     {
+        bool CtrlOrSuper = io.KeyCtrl || io.KeySuper;
         if (ImGui::IsMouseDragging(2))
             canvas->Offset += io.MouseDelta;
 
-        if (io.KeyShift && !io.KeyCtrl)
+        if (io.KeyShift && !CtrlOrSuper)
             canvas->Offset.x += io.MouseWheel * 16.0f;
 
-        if (!io.KeyShift && !io.KeyCtrl)
+        if (!io.KeyShift && !CtrlOrSuper)
         {
             canvas->Offset.y += io.MouseWheel * 16.0f;
             canvas->Offset.x += io.MouseWheelH * 16.0f;
         }
 
-        if (!io.KeyShift && io.KeyCtrl)
+        if (!io.KeyShift && CtrlOrSuper)
         {
             if (io.MouseWheel != 0)
             {
